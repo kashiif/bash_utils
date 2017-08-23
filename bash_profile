@@ -95,7 +95,7 @@ bind '"\C-r": "\C-ahh \C-j"'
 
 ## git-aware-prompt
 ####################
-export GITAWAREPROMPT="$REPO_ROOT/sub-modules/git-aware-prompt"
+export GITAWAREPROMPT="$REPO_ROOT/submodules/git-aware-prompt"
 source "${GITAWAREPROMPT}/main.sh"
 
 #export PS1="\[\033[38;5;27m\]\w\[\033[0m\] \[$txtgrn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
@@ -106,19 +106,19 @@ export PS1="\[\033[48;5;33;38;5;15m\] \w  \[\033[48;5;15;38;5;33m\]▶ \[\033[48
 ####################
 # This must happen before sourcing npm_install_autocomplete_bash otherwise yarn-completion will
 # override our custom yarn autocompletion
-source "$REPO_ROOT/sub-modules/yarn-completion/yarn-completion.bash"
+source "$REPO_ROOT/submodules/yarn-completion/yarn-completion.bash"
 
 ## npm_install_autocomplete_bash
 ################################
 # This must happen after sourcing yarn-completion otherwise it will override our
 # custom yarn autocompletion
-source "${REPO_ROOT}/sub-modules/npm_install_autocomplete_bash/.npm_install_autocomplete_bash"
+source "${REPO_ROOT}/submodules/npm_install_autocomplete_bash/.npm_install_autocomplete_bash"
 
 ## git-plus
 ####################
-alias git-multi=${REPO_ROOT}/sub-modules/git-plus/git-multi
+alias git-multi=${REPO_ROOT}/submodules/git-plus/git-multi
 alias gitm=git-multi
 
-alias git-recent=${REPO_ROOT}/sub-modules/git-plus/git-recent
+alias git-recent=${REPO_ROOT}/submodules/git-plus/git-recent
 alias gitr=git-recent
 
