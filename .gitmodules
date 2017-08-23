@@ -1,0 +1,13 @@
+
+[submodule "submodules/git-aware-prompt"]
+	path = submodules/git-aware-prompt
+	url = https://github.com/jimeh/git-aware-prompt.git
+[submodule "submodules/npm_install_autocomplete_bash"]
+	path = submodules/npm_install_autocomplete_bash
+	url = https://gist.github.com/a73fc0aa2853344991f36c38cb97f7fe.git
+[submodule "submodules/git-plus"]
+	path = submodules/git-plus
+	url = https://github.com/tkrajina/git-plus.git
+[submodule "submodules/yarn-completion"]
+	path = submodules/yarn-completion
+	url = https://github.com/dsifford/yarn-completion
