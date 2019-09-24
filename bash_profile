@@ -18,19 +18,21 @@ alias g='git'
 alias gcm='git checkout master'
 alias gcd='git checkout dev'
 alias gm='git merge'
+alias ghash='git log -1 --format="%H"'
 
 # docker shourtcuts
 alias d='docker'
 alias dc='docker-compose'
 alias dm='docker-machine'
 alias denv='eval $(docker-machine env)'
-
+alias docker-remove-stopped-containers='docker rm -v $(docker ps -a -q -f status=exited)'
+alias docker-remove-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
 
 # Make sublime work through the command line
 alias sublime='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
 alias s='sublime'
 
-alias ws='webstorm'
+alias ws='/usr/local/bin/webstorm'
 
 alias t='open -a /Applications/TextWrangler.app'
 alias nd='npm ls --depth 0'
@@ -74,6 +76,7 @@ alias egrep='egrep --color=auto'
 
 ################ Workplace related ######################
 source "${REPO_ROOT}/scripts/msts/main.sh"
+source "${REPO_ROOT}/scripts/review.sh"
 
 ################ Third Party Utilities (Manual install required first) ######################
 
