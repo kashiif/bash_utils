@@ -19,6 +19,9 @@ alias gcm='git checkout master'
 alias gcd='git checkout dev'
 alias gm='git merge'
 alias ghash='git log -1 --format="%H"'
+alias gdiff="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gdiffstaging='printf "\n\nstaging <-> develop\n\n" && gdiff staging...develop'
+alias gdiffprod='printf "\n\nproduction <-> staging\n\n" &&  gdiff production...staging'
 
 # docker shourtcuts
 alias d='docker'
@@ -45,6 +48,7 @@ alias unb='rm -rf bower_components/ node_modules/'
 
 alias myip="ipconfig getifaddr $(route -n get default|awk '/interface/ { print $2 }')"
 
+alias y='yarn'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
