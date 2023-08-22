@@ -28,8 +28,11 @@ alias d='docker'
 alias dc='docker-compose'
 alias dm='docker-machine'
 alias denv='eval $(docker-machine env)'
-alias docker-remove-stopped-containers='docker rm -v $(docker ps -a -q -f status=exited)'
-alias docker-remove-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
+alias d-rm-stopped-containers='docker rm -v $(docker ps -a -q -f status=exited)'
+alias d-rm-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
+alias d-rm-all-containers='docker container rm $(docker container ls -a --format "{{.ID}}" )'
+alias d-ls-containers='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
+alias d-ls-containers-names='docker container ls --format "{{.Names}}"'
 
 # Make sublime work through the command line
 alias sublime='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
@@ -95,6 +98,14 @@ source "${REPO_ROOT}/3rd-party/git-completion.bash"
 # hh : https://github.com/dvorka/hstr
 # hh is installed into /usr/local/bin/hh
 bind '"\C-r": "\C-ahh \C-j"'
+
+export HSTR_CONFIG=hicolor       # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+# ensure synchronization between bash memory and history file
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 
 
 ################## Third Party Utilities from their github repos ############################
