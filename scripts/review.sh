@@ -3,7 +3,7 @@ function review_git_branch() {
   TARGET_BRANCH_NAME=$1
 
   if [ -z "$TARGET_BRANCH_NAME" ]; then
-      echo "No target branch name supplied"
+      echo "No target branch name supplied."
   else
     git fetch
     git branch -d "$TARGET_BRANCH_NAME"

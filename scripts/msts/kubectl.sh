@@ -1,0 +1,23 @@
+alias kc='kubectl'
+alias kc-staging-logs='kail --svc staging-wolverine-credit-service --since 15m'
+alias kc-what='basename $KUBECONFIG'
+#alias kc-use-bcaas-old-staging='export KUBECONFIG=/Users/kkhan/.kube/bcaas-old-staging-conf'
+#alias kc-use-bcaas-old-prod='export KUBECONFIG=/Users/kkhan/.kube/bcaas-old-prod-conf'
+alias kc-use-bcaas-staging-green='export KUBECONFIG=/Users/kkhan/.kube/bcaas-staging-green-conf'
+alias kc-use-bcaas-production-green='export KUBECONFIG=/Users/kkhan/.kube/bcaas-production-green-conf'
+alias kc-use-caas-customer-staging-green='export KUBECONFIG=/Users/kkhan/.kube/caas-customer-staging-green-conf'
+alias kc-use-caas-customer-production-green='export KUBECONFIG=/Users/kkhan/.kube/caas-customer-production-green-conf'
+alias kc-use-devx-staging-green='export KUBECONFIG=/Users/kkhan/.kube/devx-staging-green-conf'
+alias kc-use-devx-production-green='export KUBECONFIG=/Users/kkhan/.kube/devx-production-green-conf'
+
+alias kcgp='kc get pods'
+alias kcgpy='kc get pod -o yaml'
+alias kcgd='kc get deployments'
+alias kcgdy='kc get deployment -o yaml'
+alias kcgcj='kc get cronjob'
+alias kcgcjy='kc get cronjob -o yaml'
+alias kcgj='kc get job -o yaml'
+
+alias kclf='kc logs -f'
+
+alias kc-get-staging-wolverine='kc get pods | grep staging-wolverine-credit-service'

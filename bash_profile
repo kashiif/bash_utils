@@ -10,7 +10,7 @@ alias ..='cd ..'
 alias cd..='cd ..'
 alias c='clear'
 
-alias e='ember'
+alias m='make'
 
 # git shourtcuts
 
@@ -20,8 +20,14 @@ alias gcd='git checkout dev'
 alias gm='git merge'
 alias ghash='git log -1 --format="%H"'
 alias gdiff="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gdiff2="git log --pretty=format:'%s' --abbrev-commit"
 alias gdiffstaging='printf "\n\nstaging <-> develop\n\n" && gdiff staging...develop'
 alias gdiffprod='printf "\n\nproduction <-> staging\n\n" &&  gdiff production...staging'
+gdiffproddevx() {
+  printf "\n\n$(git rev-parse --abbrev-ref HEAD)(Current Branch) <-> develop\n\n";
+  gdiff2 $(git rev-parse --abbrev-ref HEAD)...develop | sed '/Merge branch/d';
+  printf "\n\n";
+}
 
 # docker shourtcuts
 alias d='docker'
@@ -33,6 +39,8 @@ alias d-rm-dangling-images='docker rmi $(docker images -f "dangling=true" -q)'
 alias d-rm-all-containers='docker container rm $(docker container ls -a --format "{{.ID}}" )'
 alias d-ls-containers='docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
 alias d-ls-containers-names='docker container ls --format "{{.Names}}"'
+alias d-images-names='docker images --format "{{.Repository}}:{{.Tag}}"'
+
 
 # Make sublime work through the command line
 alias sublime='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
@@ -82,6 +90,8 @@ alias egrep='egrep --color=auto'
 
 
 ################ Workplace related ######################
+source "${REPO_ROOT}/scripts/msts/devx.sh"
+source "${REPO_ROOT}/scripts/msts/kubectl.sh"
 source "${REPO_ROOT}/scripts/msts/main.sh"
 source "${REPO_ROOT}/scripts/review.sh"
 
@@ -140,3 +150,7 @@ alias gitm=git-multi
 alias git-recent=${REPO_ROOT}/submodules/git-plus/git-recent
 alias gitr=git-recent
 
+## bash-completion installed with homebrew
+# https://github.com/scop/bash-completion
+############################################
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
