@@ -21,3 +21,33 @@ alias kcgj='kc get job -o yaml'
 alias kclf='kc logs -f'
 
 alias kc-get-staging-wolverine='kc get pods | grep staging-wolverine-credit-service'
+
+kc-patch-secret() {
+  if [ "$1" = "" ] || [ "$2" = "" ] || [ "$3" = "" ] ; then
+    echo "Syntax kc-patch-secret <secret-name> <key> <plain-value>";
+    return 1;
+  fi
+
+  kubectl patch secret "$1" -p="{ \"data\" : { \"$2\": \"$(echo -n $3 | base64 -w0)\" } }"
+}
+
+kc-show-secret-data() {
+  if [ "$1" = "" ] ; then
+    echo "Syntax kc-show-secret-data <secret-name>";
+    return 1;
+  fi
+
+  kubectl get secret "$1" -o json \
+    | jq '.data'
+}
+
+kc-show-secret-values() {
+  if [ "$1" = "" ] ; then
+    echo "Syntax kc-show-secret-values <secret-name>";
+    return 1;
+  fi
+
+  kubectl get secret "$1" -o json \
+    | jq '.data' \
+    | while read line; do echo "$(echo $line | cut -d ':' -f 1)": "$(echo $line | cut -d ':' -f 2 | base64 -d)"; done
+}

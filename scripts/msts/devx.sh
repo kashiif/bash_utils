@@ -1,4 +1,7 @@
 #devx
+
+# Pre-req: jq-1.7.1
+
 tfstatelock-qa-get() {
   if [ "$1" = "" ] ; then
     echo "Usage: tfstatelock-qa-get <LockID-From-Terraform-Error-Message>";
