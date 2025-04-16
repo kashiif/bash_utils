@@ -41,13 +41,12 @@ kc-show-secret-data() {
     | jq '.data'
 }
 
-kc-show-secret-values() {
+function kc-show-secret-values() {
   if [ "$1" = "" ] ; then
-    echo "Syntax kc-show-secret-values <secret-name>";
+    echo "Usage: kc-show-secret-values <secret_name>";
     return 1;
   fi
 
-  kubectl get secret "$1" -o json \
-    | jq '.data' \
-    | while read line; do echo "$(echo $line | cut -d ':' -f 1)": "$(echo $line | cut -d ':' -f 2 | base64 -d)"; done
+  SECRET_NAME=$1
+  kubectl get secret -o json $SECRET_NAME | jq '.data' | jq 'map_values(@base64d)'
 }

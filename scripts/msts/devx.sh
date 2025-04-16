@@ -28,15 +28,3 @@ tfstatelock-qa-del() {
   echo "RECORD_KEY: $RECORD_KEY"
   aws dynamodb delete-item --table-name caasdevx-qa-terraform-state --key "{ \"LockID\": {\"S\":$RECORD_KEY} }"
 }
-
-
-function kc-show-secret() {
-
-  if [ "$1" = "" ] ; then
-    echo "Usage: kc-show-secret <secret_name>";
-    return 1;
-  fi
-
-  SECRET_NAME=$1
-  kubectl get secret -o json $SECRET_NAME | jq '.data' | jq 'map_values(@base64d)'
-}
