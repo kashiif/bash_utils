@@ -19,3 +19,5 @@ export BCAAS_LOCAL_DB_PASSWORD=empty_password
 
 alias dockerutil='docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock -v ~/.aws:/root/.aws	-v ~/.helm:/root/.helm -v ~/.kube:/root/.kube -v ~/dockerutil:/dockerutil -e KUBECONFIG="/root/.kube/$(basename ${KUBECONFIG})" 434875166128.dkr.ecr.us-east-1.amazonaws.com/msts/docker:19.03.5-dind.1'
 
+alias start-present-dashboard-server='docker run --name present-dashboard-server -v ~/work/gitlab-kkhanmsts/present-board-dashboard/app:/usr/share/nginx/html:ro -p 7373:80 -d nginx'
+
